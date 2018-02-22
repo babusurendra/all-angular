@@ -1,28 +1,3 @@
-// import { Component } from '@angular/core';
-// import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-// @Component({
-//   selector: 'app-root',
-//   templateUrl: './app.component.html',
-//   styleUrls: ['./app.component.css']
-// })
-// export class AppComponent {
-//   scrollCallback;
-//   constructor(){
-//     this.scrollCallback = this.getStories.bind(this);
-//   }
-//   //title = 'app';
-//   items = [1,2,3,3,4,1,2,3,3,4,1,2,3,3,4,1,2,3,3,4]
-//   birthday = new Date(); // April 15, 1988
-//   onScroll(){
-//     alert("scrolled");
-//   }
-//   getStories (){
-//     var newData = [10,20,30,30,40,10,20,30,30,40,10,20,30,30,40,10,20,30,30,40]
-//      this.items = [...this.items, ...newData]
-//      console.log(this.items);
-//   }
-
-// }
 import { Component,ErrorHandler } from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map'
@@ -30,6 +5,7 @@ import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/take';
 import {Observable} from 'rxjs/Observable'
 import 'rxjs/add/observable/throw';
+//import {myModel} from './search.model';
 @Component({
   selector: 'app-root',
   templateUrl:'./app.component.html',
@@ -53,6 +29,7 @@ export class AppComponent implements ErrorHandler {
   private items = [];
   errorExist = false;
   errorMessage :string ;
+  showLoader : boolean = false;
   getData() {
     // alert('scrolled');
     this.curentPage = this.curentPage+1;
@@ -62,16 +39,21 @@ export class AppComponent implements ErrorHandler {
     }).catch(this.handleError)
   }
   onScroll(){
+    this.showLoader = true;
   this.showGoTop  = true;
     
-    this.getData().take(3).subscribe((res =>{
+    this.getData().subscribe((res =>{
           let data = res.json();
+          
+          //console.log(`data is ${data[0]}`);
          this.items = [...this.items,...data]
     }),(error =>{
        console.log(error.status);
        //alert('in error')
        this.errorExist = true;
        this.errorMessage ="Error while fetching data from service";  
+    }),(()=>{
+      this.showLoader = false;
     }))
   }
 }

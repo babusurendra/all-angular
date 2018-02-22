@@ -9,7 +9,8 @@ import { UsersComponent } from './users/users.component';
 import { EmployeesComponent } from './employees/employees.component';
 import {HttpModule} from '@angular/http'
 import {approutes} from '../app/routes/app.route';
-import { GototopDirective } from './gototop.directive'
+import { GototopDirective } from './gototop.directive';
+import {AuthGuard} from './app.guard'
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { GototopDirective } from './gototop.directive'
     approutes,
     InfiniteScrollModule,HttpModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
   exports:[InfiniteScrollModule]
 })

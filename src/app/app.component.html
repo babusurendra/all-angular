@@ -10,6 +10,7 @@
     <li *ngFor= "let item of items">{{item}}</li>
 </ul> -->
 <button class="myBtn" appGototop [hidden]="!showGoTop" (click)="showGoTop = !showGoTop">Top</button>
+<h3 class="loader" [hidden]="!showLoader">Loading Data</h3>
 <router-outlet></router-outlet>
 <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
 <!-- <div appGototop [hidden]="!showGoTop">
