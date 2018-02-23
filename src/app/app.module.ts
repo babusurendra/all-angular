@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {ReactiveFormsModule} from '@angular/forms'
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppComponent } from './app.component';
 import { CustomeDirectiveDirective } from './custome-directive.directive';
@@ -23,7 +23,8 @@ import {AuthGuard} from './app.guard'
   imports: [
     BrowserModule,
     approutes,
-    InfiniteScrollModule,HttpModule
+    InfiniteScrollModule,HttpModule,
+    ReactiveFormsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

@@ -6,6 +6,7 @@ import 'rxjs/add/operator/take';
 import {Observable} from 'rxjs/Observable'
 import 'rxjs/add/observable/throw';
 //import {myModel} from './search.model';
+import {ReactiveFormsModule,FormGroup,FormControl,Validators,AbstractControl} from '@angular/forms'
 @Component({
   selector: 'app-root',
   templateUrl:'./app.component.html',
@@ -55,5 +56,28 @@ export class AppComponent implements ErrorHandler {
     }),(()=>{
       this.showLoader = false;
     }))
+  }
+  
+  userform = new FormGroup({
+  username : new FormControl("",[Validators.required,Validators.minLength(5)]),
+  address : new FormControl("",this.addressValidate),
+  language: new FormControl("")
+  });
+  onFormSubmit(details){
+    console.log(details);
+  }
+  showaddressError = true;
+  addressValidate(control:AbstractControl){
+    console.log("control length" + control.value.length)
+    if(control.value.length < 5)
+    {
+      console.log("in if conditiono");
+      return {address:true};
+    }     
+      
+  }
+  usernameChanged(oldval,newval){
+     this.userform.patchValue({address:newval});
+     console.log("new value of username is" + newval);
   }
 }

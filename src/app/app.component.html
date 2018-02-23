@@ -9,6 +9,23 @@
 <!-- <ul appCustomeDirective>
     <li *ngFor= "let item of items">{{item}}</li>
 </ul> -->
+
+<!-- forms -->
+<form [formGroup]="userform" (ngSubmit)="onFormSubmit(userform.value)">
+    <input type="text" formControlName="username" placeholder="username" (ngModelChange)="usernameChanged(oldval,$event)"/>
+    <input type="text" formControlName="address" placeholder="address"/>
+    <div *ngIf="!userform.controls['address'].valid">
+        <h3> Length should be minimum 6</h3>
+        <h3>for Valid : {{userform.controls['address'].valid}}</h3>
+    </div>
+    <select formControlName="language">
+        <option value="">Select Language</option>
+        <option value="ejs">Ejs</option>
+        <option value="xjs">xjs</option>
+        <option value="yjs">yjs</option>
+    </select>
+<button type="submit" [disabled]="false">Submit</button>
+</form>
 <button class="myBtn" appGototop [hidden]="!showGoTop" (click)="showGoTop = !showGoTop">Top</button>
 <h3 class="loader" [hidden]="!showLoader">Loading Data</h3>
 <router-outlet></router-outlet>

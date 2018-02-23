@@ -7,7 +7,7 @@ import { AppComponent } from '../app.component';
 export const routes: Routes = [
 
     {
-        path: 'users', component: UsersComponent, canActivate: [AuthGuard]
+        path: 'users', component: UsersComponent
     },
     {
         path: 'employee', component: EmployeesComponent, canActivate: [AuthGuard]
