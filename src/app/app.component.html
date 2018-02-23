@@ -6,14 +6,51 @@
 <p> double the value {{10|doublevalue|currency:'USD':'3-4'}}</p>
 <a routerLink="users">Users</a>
 <a routerLink="employee">Employee</a>
+<a routerLink="register">Register</a>
+
 <!-- <ul appCustomeDirective>
     <li *ngFor= "let item of items">{{item}}</li>
 </ul> -->
 
+
+<!-- Navigation Bar code -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav> -->
+
+<!-- Navigation Bar ends -->
+<router-outlet></router-outlet>
 <!-- forms -->
-<form [formGroup]="userform" (ngSubmit)="onFormSubmit(userform.value)">
-    <input type="text" formControlName="username" placeholder="username" (ngModelChange)="usernameChanged(oldval,$event)"/>
-    <input type="text" formControlName="address" placeholder="address"/>
+<!-- <form [formGroup]="userform" (ngSubmit)="onFormSubmit(userform.value)">
+    <input type="text" formControlName="username" placeholder="username" (ngModelChange)="usernameChanged(oldval,$event)" />
+    <input type="text" formControlName="address" placeholder="address" />
     <div *ngIf="!userform.controls['address'].valid">
         <h3> Length should be minimum 6</h3>
         <h3>for Valid : {{userform.controls['address'].valid}}</h3>
@@ -24,32 +61,26 @@
         <option value="xjs">xjs</option>
         <option value="yjs">yjs</option>
     </select>
-<button type="submit" [disabled]="false">Submit</button>
+    <button type="submit" [disabled]="false">Submit</button>
 </form>
 <button class="myBtn" appGototop [hidden]="!showGoTop" (click)="showGoTop = !showGoTop">Top</button>
-<h3 class="loader" [hidden]="!showLoader">Loading Data</h3>
-<router-outlet></router-outlet>
+<h3 class="loader" [hidden]="!showLoader">Loading Data</h3> -->
+
 <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
 <!-- <div appGototop [hidden]="!showGoTop">
         <a href="#">Go to top</a>
     </div> -->
-    
-            <!-- <a href="#">Go to top</a> -->
-            <!-- <span class="scroll-top-inner">
+
+<!-- <a href="#">Go to top</a> -->
+<!-- <span class="scroll-top-inner">
                 <i class="fa fa-2x fa-arrow-circle-up"></i>
             </span> -->
-        <!-- </div> -->
-<div class="search-results">
-		    
-        <ul infiniteScroll
-		    [infiniteScrollDistance]="1"
-		    [infiniteScrollThrottle]="80"
-        (scrolled)="onScroll()">
+<!-- </div> -->
+<!-- <div class="search-results">
+
+    <ul infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="80" (scrolled)="onScroll()">
         <li *ngFor="let item of items">{{item.title|json}}</li>
-        
+
     </ul>
-    
-    </div>
-    <div *ngIf="errorExist">
-    <h3>{{errorMessage}}</h3>
-   
+
+</div> -->

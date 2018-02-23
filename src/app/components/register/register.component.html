@@ -1,0 +1,29 @@
+
+<div class="example-container">
+  <form [formGroup] ="userForm" (ngSubmit)="onFormSubmit(userForm)">
+      <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstname">
+        </mat-form-field>
+        <mat-error *ngIf="!userForm.controls['firstname'].valid && userForm.controls['firstname'].touched">Please Enter Only characters</mat-error>
+        <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="lastname">
+          </mat-form-field>
+      
+        <mat-form-field>
+          <textarea matInput placeholder="Enter Address" formControlName="address">Address</textarea>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-select placeholder="Select" formControlName="mart_status">
+            <mat-option value="single">Single</mat-option>
+            <mat-option value="married">Married</mat-option>
+          </mat-select>
+        </mat-form-field>
+<div class="button-row">
+  <button mat-raised-button color="accent">Register</button>
+</div>
+  </form>
+     
+
+    
+  </div>
