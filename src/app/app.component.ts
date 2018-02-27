@@ -1,11 +1,12 @@
 import { Component,ErrorHandler } from '@angular/core';
-import {Http} from '@angular/http';
+import {Http,RequestOptions,Headers} from '@angular/http';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/take';
 import {Observable} from 'rxjs/Observable'
 import 'rxjs/add/observable/throw';
 //import {myModel} from './search.model';
+import { NgProgress } from 'ngx-progressbar';
 import {ReactiveFormsModule,FormGroup,FormControl,Validators,AbstractControl} from '@angular/forms'
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent implements ErrorHandler {
   showGoTop : boolean = false;
   curentPage = 1;
   baseurl = 'http://node-hnapi.herokuapp.com/news?pages='
-  constructor(private http :Http) { 
+  constructor(private http :Http,public ngProgress: NgProgress) { 
     this.http.get('http://node-hnapi.herokuapp.com/news?page=1').subscribe((res:any) => {
       let data = res.json();
       this.items = [...this.items,...data]
@@ -80,4 +81,27 @@ export class AppComponent implements ErrorHandler {
      this.userform.patchValue({address:newval});
      console.log("new value of username is" + newval);
   }
+  ngOnInit(){
+    /** request started */
+    this.ngProgress.start();
+    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe(res => {
+        /** request completed */
+        this.ngProgress.done();
+      });
+    }
+    usersClick(){
+     // alert();
+     let headers = new Headers({ "content-type": "application/json", });
+    headers.append('access_token', "abcd");
+    let options = new RequestOptions({headers:headers});
+
+      this.http.post('http://localhost:3000/users',"",options).subscribe((data)=>{
+        console.log(data);
+      })
+    }
+    empClick(){
+      this.http.get('http://localhost:3000/emp').subscribe((data)=>{
+        console.log(data);
+      })
+    }
 }

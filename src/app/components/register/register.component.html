@@ -1,4 +1,4 @@
-
+<ng-progress></ng-progress>
 <div class="example-container">
   <form [formGroup] ="userForm" (ngSubmit)="onFormSubmit(userForm)">
       <mat-form-field>
@@ -18,11 +18,14 @@
             <mat-option value="single">Single</mat-option>
             <mat-option value="married">Married</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field><br>     
+        <input type="file" formControlName="photo" (change)="fileChange($event)"><br>   
 <div class="button-row">
   <button mat-raised-button color="accent">Register</button>
 </div>
+
   </form>
+
      
 
     

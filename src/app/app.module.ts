@@ -16,6 +16,8 @@ import {
   BrowserAnimationsModule
 } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material-modules/angular.material.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,9 +34,11 @@ import {MaterialModule} from './material-modules/angular.material.module';
     InfiniteScrollModule, HttpModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
+   NgProgressModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,{ provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }],
   bootstrap: [AppComponent],
   exports: [InfiniteScrollModule,BrowserAnimationsModule,MaterialModule]
 })
