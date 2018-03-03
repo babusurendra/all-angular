@@ -18,6 +18,7 @@ import {
 import {MaterialModule} from './material-modules/angular.material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+import {FileInputAccessorModule} from "file-input-accessor";
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-   NgProgressModule
+   NgProgressModule,
+   FileInputAccessorModule
   ],
   providers: [AuthGuard,{ provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }],
   bootstrap: [AppComponent],

@@ -18,8 +18,20 @@
             <mat-option value="single">Single</mat-option>
             <mat-option value="married">Married</mat-option>
           </mat-select>
-        </mat-form-field><br>     
-        <input type="file" formControlName="photo" (change)="fileChange($event)"><br>   
+        </mat-form-field><br>  
+        <input type="file" name = "userfile" multiple formControlName="photo"
+        (change)="readUrl($event)" required/>  
+        <img *ngIf = "url" [src]="url" height="50px" width="60px"/> {{userForm.controls['photo'].status}}
+        
+          <h3 *ngIf="notImage">
+            Photo not valid
+          </h3>
+          <h3 *ngIf="!sizeMatch">
+            size should be less than 4kb and greater than 2 kb only
+          </h3>
+        <h1>Percentage Done is : {{percentDone}}</h1>
+        <pre>{{userForm.value|json}}</pre>
+        <!-- <input type="file" formControlName="photo" (change)="fileChange($event)"><br>    -->
 <div class="button-row">
   <button mat-raised-button color="accent">Register</button>
 </div>
