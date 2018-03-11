@@ -65,6 +65,7 @@ export class RegisterComponent implements OnInit {
   onFormSubmit(userform) {
     //console.log("in on submit");
     console.log(userform.value);
+    this.submituser();
   }
   
     //console.log("After file control");
@@ -87,6 +88,7 @@ export class RegisterComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
     const files = event.target.files;
+    console.log("files are " + files);
     if (files.length > 0) {
       let file;
       let formData = new FormData();
@@ -114,7 +116,7 @@ export class RegisterComponent implements OnInit {
 //   })
 // };
 //new HttpHeaders({'h1':'v1','h2':'v2'});
-let headers1 = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8','Authorization': 'token'});
+let headers1 = new HttpHeaders({'Content-Type': 'application/json','Authorization': 'token'});
 //let headers2 = new HttpHeaders({'Authorization': 'token'});
 //headers = ";
 
@@ -136,7 +138,24 @@ let headers1 = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8
  
   }
   
+  submituser(){
 
+    console.log(JSON.stringify(this.userForm.value));
+    let headers1 = new HttpHeaders({'Content-Type': 'application/json','Authorization': 'token'});
+    this.httpclient.post('http://localhost:3000/create',this.userForm.value,{ headers:headers1
+      }).map((res) => res).subscribe((event:any) => {
+          // Via this API, you get access to the raw event stream.
+          // Look for upload progress events.
+          // if (event.type === HttpEventType.UploadProgress) {
+          //   // This is an upload progress event. Compute and show the % done:
+          //    this.percentDone = Math.round(100 * event.loaded / event.total);
+          //   console.log(`File is ${this.percentDone}% uploaded.`);
+          // } else if (event instanceof HttpResponse) {
+          //   console.log('File is completely uploaded!');
+          // }
+          console.log(event);
+        }); 
+  }
  // }
 
 

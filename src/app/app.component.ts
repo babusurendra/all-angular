@@ -8,6 +8,7 @@ import 'rxjs/add/observable/throw';
 //import {myModel} from './search.model';
 import { NgProgress } from 'ngx-progressbar';
 import {ReactiveFormsModule,FormGroup,FormControl,Validators,AbstractControl} from '@angular/forms'
+declare var tableau: any;
 @Component({
   selector: 'app-root',
   templateUrl:'./app.component.html',
@@ -19,6 +20,7 @@ export class AppComponent implements ErrorHandler {
     // console.log(error);
      return Observable.throw(error);
   }
+  tableauViz: any
   showGoTop : boolean = false;
   curentPage = 1;
   baseurl = 'http://node-hnapi.herokuapp.com/news?pages='
@@ -82,6 +84,21 @@ export class AppComponent implements ErrorHandler {
      console.log("new value of username is" + newval);
   }
   ngOnInit(){
+
+    // Tableu Started 
+
+    var placeholderDiv = document.getElementById('tableauViz');
+    var url = 'https://public.tableau.com/views/USTreasuryInterestRate/Sheet1?:embed=y&:display_count=yes';
+    var options = {
+      hideTabs: true,
+      width: '800px',
+      height: '700px',
+      onFirstInteractive: function() {
+        // The viz is now ready and can be safely used.
+      }
+    };
+    this.tableauViz = new tableau.Viz(placeholderDiv, url, options);    
+  
     /** request started */
     this.ngProgress.start();
     this.http.get('https://jsonplaceholder.typicode.com/users').subscribe(res => {

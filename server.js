@@ -5,24 +5,24 @@ var DIR = './uploads/';
 //define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
 
 
-/*  un comment below snippet
+//  un comment below snippet
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads')
+        cb(null, './uploads/')
     }
 })
 
-var upload = multer({ storage: storage }).single('userfile');   */
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads/')
-    },
-    filename: function (req, file, cb) {
-        console.log("File name is " + file.originalname);
-      cb(null, file.originalname)
-    }
-  })
-  var upload = multer({storage: storage}).single('userfile');
+var upload = multer({ dest: './uploads/' }).single('userfile');   
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, './uploads/')
+//     },
+//     filename: function (req, file, cb) {
+//         console.log("File name is " + file.originalname);
+//       cb(null, file.originalname)
+//     }
+//   })
+//   var upload = multer({storage: storage}).single('userfile');
 //var upload = multer({storage: DIR});
 //console.log("req received");
 app.use(function (req, res, next) {
@@ -35,6 +35,7 @@ app.use(function (req, res, next) {
 //  })
 app.post('/upload', (req, res) => {
     console.log(req.headers.authorization);
+    //console.log(req.file.single);
     var path = '';
     upload(req, res, function (err) {
         if (err) {
